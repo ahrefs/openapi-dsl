@@ -1,0 +1,7 @@
+(library
+ (name openapi_dsl_internal)
+ (public_name openapi-dsl.internal)
+ (modules nonEmptyList openapi openapi_dsl)
+ (libraries jsonkit yojson)
+ (preprocess
+  (pps jsonkit.ppx)))

@@ -1,0 +1,5 @@
+(library
+ (name openAPI)
+ (public_name openapi-dsl)
+ (modules openAPI)
+ (libraries openapi-dsl.internal))
