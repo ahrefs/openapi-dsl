@@ -22,6 +22,57 @@ let () = add_path api "/users" (path_item ~get:(operation ~responses:["200", ok]
 let document = root_to_json (finalize api)
 ```
 
+`document` contains:
+
+```json
+{
+  "openapi": "3.2.0",
+  "info": { "title": "Users", "version": "1.0.0" },
+  "servers": [],
+  "paths": {
+    "/users": {
+      "get": {
+        "responses": {
+          "200": { "$ref": "#/components/responses/UserResponse" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "email": { "type": [ "string", "null" ] },
+          "id": { "type": "string" }
+        },
+        "required": [ "email", "id" ],
+        "additionalProperties": true
+      }
+    },
+    "responses": {
+      "UserResponse": {
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/User" }
+          }
+        }
+      }
+    },
+    "parameters": {},
+    "examples": {},
+    "requestBodies": {},
+    "headers": {},
+    "securitySchemes": { "Bearer": { "type": "http", "scheme": "bearer" } },
+    "links": {},
+    "callbacks": {},
+    "pathItems": {},
+    "mediaTypes": {}
+  },
+  "tags": []
+}
+```
+
 You can also build a schema without an OCaml type:
 ```ocaml
 let user_schema =
